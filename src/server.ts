@@ -83,7 +83,7 @@ app.delete('/api/favorites/:id', (req: any, res:any) => {
 });
 
 app.get('*', (req:any, res:any) => {
-  res.sendFile(path.join(__dirname, '../weather-app/browser/index.html'));
+  res.json({success: true, message: "hello world"});
 });
 
 
