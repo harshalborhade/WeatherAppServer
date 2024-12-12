@@ -1,6 +1,5 @@
 const TOMORROW_API_URL = 'https://api.tomorrow.io/v4/timelines';
-const TOMORROW_API_KEY = 'D8G6fVaXgnwrSksMZOWaSq7OynBWPLwi';
-
+const TOMORROW_API_KEY = process.env.TOMORROW_API_KEY;
 
 function getCurrentWeather(lat:any, lng:any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;

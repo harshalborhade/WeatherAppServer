@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const mongoApi = require('./mongo_calls');
 const path = require('path');
 const weatherApi = require('./tomorrow_api_calls');
