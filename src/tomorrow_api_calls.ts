@@ -34,16 +34,16 @@ function getTodayWeatherDetails(lat: any, lng: any) {
     //     headers: headers
     // })
     //     .then(response => response.json())
-    //     .then(data => data.data.timelines[0].intervals[0])
+    //     .then(data => data.data.timelines[0].intervals[0].values)
     //     .catch(error => {
-    //         console.error('Error fetching current weather:', error);
+    //         console.error('Error fetching current weather:',  error);
     //         throw error;
     //     });
     return new Promise((resolve) => { 
         setTimeout(() => { 
-            resolve([
-                { "startTime": "2024-12-12T04:44:00Z", "values": { "cloudCover": 100, "humidity": 98, "precipitationIntensity": 0.04, "pressureSeaLevel": 29.42, "temperature": 53.6, "uvIndex": 0, "visibility": 2.63, "weatherCode": 4200, "windSpeed": 7.55 } }
-            ]) 
+            resolve(
+                { "cloudCover": 100, "humidity": 98, "precipitationIntensity": 0.04, "pressureSeaLevel": 29.42, "temperature": 53.6, "uvIndex": 0, "visibility": 2.63, "weatherCode": 4200, "windSpeed": 7.55}
+            ) 
         },1000) 
     });
 }
@@ -72,17 +72,33 @@ function getCurrentWeather(lat: any, lng: any) {
         "content-type": "application/json"
     };
 
-    return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => data.data.timelines[0].intervals[0].values)
-        .catch(error => {
-            console.error('Error fetching current weather:', error);
-            throw error;
-        });
+    // return fetch(url, {
+    //     method: 'POST',
+    //     body: JSON.stringify(payload),
+    //     headers: headers
+    // })
+    //     .then(response => response.json())
+    //     .then(data => data.data.timelines[0].intervals[0].values)
+    //     .catch(error => {
+    //         console.error('Error fetching current weather:', error);
+    //         throw error;
+    //     });
+    return new Promise((resolve) => {
+        setTimeout(() => { 
+            resolve(
+                {
+                    "cloudCover": 52,
+                    "humidity": 95,
+                    "pressureSeaLevel": 30.02,
+                    "temperature": 51.13,
+                    "uvIndex": 0,
+                    "visibility": 8.95,
+                    "weatherCode": 1101,
+                    "windSpeed": 3.64
+                }
+            ) 
+        },1000)
+    });
 }
 
 function getWeekReport(lat: any, lng: any) {
@@ -102,86 +118,86 @@ function getWeekReport(lat: any, lng: any) {
         "content-type": "application/json"
     };
 
-    return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => data.data.timelines[0].intervals)
-        .catch(error => {
-            console.error('Error fetching week report:', error);
-            throw error;
-        });
-    // return new Promise((resolve) => {
-    //     setTimeout(() => {
-    //         resolve([
-    //             {
-    //                 "startTime": "2024-11-10T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 77.9,
-    //                     "temperatureMin": 49.44,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 7.55
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-11T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 67.98,
-    //                     "temperatureMin": 50.08,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 10.07
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-12T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 69.68,
-    //                     "temperatureMin": 50.83,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 7.98
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-13T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 79.39,
-    //                     "temperatureMin": 56,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 7.55
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-14T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 70.93,
-    //                     "temperatureMin": 54.88,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 8.42
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-15T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 60.79,
-    //                     "temperatureMin": 52.55,
-    //                     "weatherCode": 1100,
-    //                     "windSpeed": 11.44
-    //                 }
-    //             },
-    //             {
-    //                 "startTime": "2024-11-16T14:00:00Z",
-    //                 "values": {
-    //                     "temperatureMax": 60.25,
-    //                     "temperatureMin": 52.03,
-    //                     "weatherCode": 1000,
-    //                     "windSpeed": 9.23
-    //                 }
-    //             }
-    //         ]);
-    //     }, 1000);
-    // });
+    // return fetch(url, {
+    //     method: 'POST',
+    //     body: JSON.stringify(payload),
+    //     headers: headers
+    // })
+    //     .then(response => response.json())
+    //     .then(data => data.data.timelines[0].intervals)
+    //     .catch(error => {
+    //         console.error('Error fetching week report:', error);
+    //         throw error;
+    //     });
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                {
+                    "startTime": "2024-11-10T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 77.9,
+                        "temperatureMin": 49.44,
+                        "weatherCode": 1000,
+                        "windSpeed": 7.55
+                    }
+                },
+                {
+                    "startTime": "2024-11-11T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 67.98,
+                        "temperatureMin": 50.08,
+                        "weatherCode": 1000,
+                        "windSpeed": 10.07
+                    }
+                },
+                {
+                    "startTime": "2024-11-12T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 69.68,
+                        "temperatureMin": 50.83,
+                        "weatherCode": 1000,
+                        "windSpeed": 7.98
+                    }
+                },
+                {
+                    "startTime": "2024-11-13T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 79.39,
+                        "temperatureMin": 56,
+                        "weatherCode": 1000,
+                        "windSpeed": 7.55
+                    }
+                },
+                {
+                    "startTime": "2024-11-14T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 70.93,
+                        "temperatureMin": 54.88,
+                        "weatherCode": 1000,
+                        "windSpeed": 8.42
+                    }
+                },
+                {
+                    "startTime": "2024-11-15T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 60.79,
+                        "temperatureMin": 52.55,
+                        "weatherCode": 1100,
+                        "windSpeed": 11.44
+                    }
+                },
+                {
+                    "startTime": "2024-11-16T14:00:00Z",
+                    "values": {
+                        "temperatureMax": 60.25,
+                        "temperatureMin": 52.03,
+                        "weatherCode": 1000,
+                        "windSpeed": 9.23
+                    }
+                }
+            ]);
+        }, 1000);
+    });
 }
 
 function getTemperatureTimeline(lat: any, lng: any) {

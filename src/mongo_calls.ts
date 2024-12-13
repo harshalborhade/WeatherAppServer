@@ -1,7 +1,7 @@
 const {MongoClient, ServerApiVersion, ObjectId} = require('mongodb');
 
 const uri = `mongodb+srv://${process.env.MONGODB_KEY}@weatherappcluster.ovyyw.mongodb.net/?retryWrites=true&w=majority&appName=weatherAppCluster`;
-console.log(uri)
+// console.log(uri)
 
 const client = new MongoClient(uri, {
     serverApi: {
