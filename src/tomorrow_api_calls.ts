@@ -1,7 +1,54 @@
 const TOMORROW_API_URL = 'https://api.tomorrow.io/v4/timelines';
 const TOMORROW_API_KEY = process.env.TOMORROW_API_KEY;
 
-function getCurrentWeather(lat:any, lng:any) {
+function getTodayWeatherDetails(lat: any, lng: any) {
+    const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
+    const payload = {
+        location: `${lat},${lng}`,
+        fields: [
+            "windSpeed",
+            "pressureSeaLevel",
+            "precipitationIntensity",
+            "temperature",
+            "humidity",
+            "visibility",
+            "cloudCover",
+            "uvIndex",
+            "weatherCode"
+        ],
+        units: "imperial",
+        timesteps: ["current"],
+        startTime: "now",
+        endTime: "nowPlus6h"
+    };
+
+    const headers = {
+        "accept": "application/json",
+        "Accept-Encoding": "gzip",
+        "content-type": "application/json"
+    };
+
+    return fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: headers
+    })
+        .then(response => response.json())
+        .then(data => data.data.timelines[0].intervals[0].values)
+        .catch(error => {
+            console.error('Error fetching current weather:',  error);
+            throw error;
+        });
+    // return new Promise((resolve) => { 
+    //     setTimeout(() => { 
+    //         resolve(
+    //             { "cloudCover": 100, "humidity": 98, "precipitationIntensity": 0.04, "pressureSeaLevel": 29.42, "temperature": 53.6, "uvIndex": 0, "visibility": 2.63, "weatherCode": 4200, "windSpeed": 7.55}
+    //         ) 
+    //     },1000) 
+    // });
+}
+
+function getCurrentWeather(lat: any, lng: any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
     const payload = {
         location: `${lat},${lng}`,
@@ -36,9 +83,25 @@ function getCurrentWeather(lat:any, lng:any) {
             console.error('Error fetching current weather:', error);
             throw error;
         });
+    // return new Promise((resolve) => {
+    //     setTimeout(() => { 
+    //         resolve(
+    //             {
+    //                 "cloudCover": 52,
+    //                 "humidity": 95,
+    //                 "pressureSeaLevel": 30.02,
+    //                 "temperature": 51.13,
+    //                 "uvIndex": 0,
+    //                 "visibility": 8.95,
+    //                 "weatherCode": 1101,
+    //                 "windSpeed": 3.64
+    //             }
+    //         ) 
+    //     },1000)
+    // });
 }
 
-function getWeekReport(lat:any, lng:any) {
+function getWeekReport(lat: any, lng: any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
     const payload = {
         location: `${lat},${lng}`,
@@ -137,7 +200,7 @@ function getWeekReport(lat:any, lng:any) {
     // });
 }
 
-function getTemperatureTimeline(lat:any, lng:any) {
+function getTemperatureTimeline(lat: any, lng: any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
     const payload = {
         location: `${lat},${lng}`,
@@ -225,7 +288,7 @@ function getTemperatureTimeline(lat:any, lng:any) {
     // });
 }
 
-function getHourlyWeather(lat:any, lng:any) {
+function getHourlyWeather(lat: any, lng: any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
     const payload = {
         location: `${lat},${lng}`,
@@ -1471,7 +1534,7 @@ function getHourlyWeather(lat:any, lng:any) {
     // });
 }
 
-function getWeatherDetails(lat:any, lng:any, date:any) {
+function getWeatherDetails(lat: any, lng: any, date: any) {
     const url = `${TOMORROW_API_URL}?apikey=${TOMORROW_API_KEY}`;
     const payload = {
         location: `${lat},${lng}`,
@@ -1536,5 +1599,6 @@ module.exports = {
     getWeekReport,
     getTemperatureTimeline,
     getHourlyWeather,
-    getWeatherDetails
+    getWeatherDetails,
+    getTodayWeatherDetails
 };

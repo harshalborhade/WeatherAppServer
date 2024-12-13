@@ -62,6 +62,15 @@ app.get('/api/weatherDetails', (req:any, res:any) => {
         });
 });
 
+app.get('/api/todayWeatherDetails' , (req:any, res:any) => {
+    weatherApi.getTodayWeatherDetails(req.query.lat, req.query.lng)
+        .then((weatherDetails: any) => res.json(weatherDetails))
+        .catch((error: any) => {
+            console.error(error);
+            res.status(500).json({error: 'Error fetching weather details'});
+        });
+});
+
 app.get('/api/favorites', (req:any, res:any) => {
 
     mongoApi.getFavorites()
