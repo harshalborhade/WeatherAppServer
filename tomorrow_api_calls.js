@@ -1,5 +1,5 @@
 var TOMORROW_API_URL = 'https://api.tomorrow.io/v4/timelines';
-var TOMORROW_API_KEY = 'D8G6fVaXgnwrSksMZOWaSq7OynBWPLwi';
+var TOMORROW_API_KEY = 'api_key';
 function getCurrentWeather(lat, lng) {
     var url = "".concat(TOMORROW_API_URL, "?apikey=").concat(TOMORROW_API_KEY);
     var payload = {
